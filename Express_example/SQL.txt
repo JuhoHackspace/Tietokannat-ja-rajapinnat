@@ -1,0 +1,10 @@
+create database banking;
+
+use banking;
+
+create table users(User_id SMALLINT PRIMARY KEY auto_increment, Username VARCHAR(50), Password VARCHAR(255), Name VARCHAR(50), Balance FLOAT);
+
+create table transactions(Transaction_id SMALLINT PRIMARY KEY auto_increment, User_id SMALLINT, Transaction_type ENUM('Withdrawal','Deposit','Transfer','Balance Inquiry', 'Login','Logout'),
+Amount DECIMAL(10,2),Transaction_time TIMESTAMP, Transaction_Description TEXT, FOREIGN KEY (User_id) REFERENCES users(User_id));
+
+create table session(Session_id SMALLINT PRIMARY KEY auto_increment, User_id SMALLINT, Login_time TIMESTAMP, Logout_time TIMESTAMP, FOREIGN KEY (User_id) REFERENCES users(User_id));
